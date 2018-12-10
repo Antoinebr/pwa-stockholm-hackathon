@@ -5,7 +5,7 @@
     if ("serviceWorker" in navigator) {
 		
       	// we register our service worker                             						
-        const registration = await navigator.serviceWorker.register('/sw.js');   
+        const registration = await navigator.serviceWorker.register('./sw.js');   
 		
       	// when our service worker is updated
         registration.onupdatefound = () => {
@@ -28,7 +28,7 @@ const cardTemplate = (name, price, time) => `
 <div class="row">
 
     <div class="col s4 img-container">
-        <img src="/img/${name}.svg" alt="" srcset="" width="80">
+        <img src="./img/${name}.svg" alt="" srcset="" width="80">
     </div>
 
     <div class="col s8 card-content">
