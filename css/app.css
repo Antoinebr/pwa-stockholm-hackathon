@@ -1,0 +1,15 @@
+.img-container img {
+    display: block;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.price {
+    font-size: 23px;
+    color: gray;
+}
+
+.time {
+    font-size: 13px;
+    color: gray;
+}
