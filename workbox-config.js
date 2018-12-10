@@ -4,6 +4,7 @@ module.exports = {
     globPatterns : [ // what workbox should cache
         'index.html',
         'css/*.css',
+        'js/*.js',
         'img/*.{png,svg}' 
     ],
 

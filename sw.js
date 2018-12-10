@@ -27,6 +27,10 @@ self.__precacheManifest = [
     "revision": "d41c1545d09be11d73d187111350da5f"
   },
   {
+    "url": "js/app.js",
+    "revision": "d41c1545d0ssddse11d73d187111350da5f"
+  },
+  {
     "url": "css/app.css",
     "revision": "064247e82330e7818d8c756d1b919b88"
   },
@@ -45,3 +49,13 @@ self.__precacheManifest = [
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+// All the request which will match /(https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/materialize)/ will fall in the strategy 
+// I also specify that It will be only for GET requests
+workbox.routing.registerRoute(/(https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/materialize)/, workbox.strategies.staleWhileRevalidate(), 'GET' );
+
+
+
+// I'm caching all requests which match https://api.nomics.com/*
+
+workbox.routing.registerRoute(/(https:\/\/api.nomics.com\/)/, workbox.strategies.networkFirst(), 'GET' );
