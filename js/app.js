@@ -1,3 +1,28 @@
+
+
+(async () => {
+
+    if ("serviceWorker" in navigator) {
+		
+      	// we register our service worker                             						
+        const registration = await navigator.serviceWorker.register('/sw.js');   
+		
+      	// when our service worker is updated
+        registration.onupdatefound = () => {
+          	
+          	// when our service worker is updated
+            registration.installing.onstatechange = function () {
+                console.log(`Service worker... ${this.state}`);
+            };
+        };
+
+    }
+
+})()
+.catch(e => console.log(`😳 : ${e}`));
+
+
+
 const cardTemplate = (name, price, time) => `
 <div class="card">
 <div class="row">
@@ -27,7 +52,7 @@ const getPrices = async (crypto) => {
     const json = await data.json();
 
     return {
-        price: json[0]['open'],
+        price: Math.round(json[0]['open']),
         time: json[0]['close_timestamp']
     }
 
@@ -55,23 +80,20 @@ const displayPrices = async () => {
 
     for (let key of Object.keys(cryptos)) {
 
-        // await is slower but will keep the order 
         const {
             price,
             time
+            // await is slower but will keep the order 
         } = await getPrices(cryptos[key].name)
-
 
         let element = document.createElement('div')
         element.classList.add('card');
         element.innerHTML = cardTemplate(cryptos[key].title, price, time)
         document.querySelector('#cryptos-container').appendChild(element);
 
-
-
     }
 
-}
+};
 
 
 displayPrices();
