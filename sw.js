@@ -57,5 +57,4 @@ workbox.routing.registerRoute(/(https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/mate
 
 
 // I'm caching all requests which match https://api.nomics.com/*
-
 workbox.routing.registerRoute(/(https:\/\/api.nomics.com\/)/, workbox.strategies.networkFirst(), 'GET' );
