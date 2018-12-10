@@ -4,12 +4,15 @@
   "description": "",
   "main": "workbox-config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server -c-1 -p 4587"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "workbox-cli": "^3.6.3"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1"
   }
 }
