@@ -24,15 +24,15 @@ workbox.clientsClaim();
 self.__precacheManifest = [
   {
     "url": "index.html",
-    "revision": "d41c1545d09be11d73d187111350da5f"
-  },
-  {
-    "url": "js/app.js",
-    "revision": "d41c1545d0ssddse11d73d187111350da5f"
+    "revision": "635b52a14e12b709676f3b95d3be985c"
   },
   {
     "url": "css/app.css",
     "revision": "064247e82330e7818d8c756d1b919b88"
+  },
+  {
+    "url": "js/app.js",
+    "revision": "c1f61c906ee836ebed79a0e0b104b9f5"
   },
   {
     "url": "img/Bitcoin.svg",
@@ -53,8 +53,6 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 // All the request which will match /(https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/materialize)/ will fall in the strategy 
 // I also specify that It will be only for GET requests
 workbox.routing.registerRoute(/(https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/materialize)/, workbox.strategies.staleWhileRevalidate(), 'GET' );
-
-
 
 // I'm caching all requests which match https://api.nomics.com/*
 workbox.routing.registerRoute(/(https:\/\/api.nomics.com\/)/, workbox.strategies.networkFirst(), 'GET' );

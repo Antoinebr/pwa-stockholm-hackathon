@@ -1,16 +1,14 @@
-
-
 (async () => {
 
     if ("serviceWorker" in navigator) {
-		
-      	// we register our service worker                             						
-        const registration = await navigator.serviceWorker.register('./sw.js');   
-		
-      	// when our service worker is updated
+
+        // we register our service worker                             						
+        const registration = await navigator.serviceWorker.register('./sw.js');
+
+        // when our service worker is updated
         registration.onupdatefound = () => {
-          	
-          	// when our service worker is updated
+
+            // when our service worker is updated
             registration.installing.onstatechange = function () {
                 console.log(`Service worker... ${this.state}`);
             };
@@ -97,3 +95,58 @@ const displayPrices = async () => {
 
 
 displayPrices();
+
+
+
+/*
+| --------------------------------------------------------------------------
+| Title
+| --------------------------------------------------------------------------
+|
+*/
+
+function injectOfflineBanner() {
+
+    const elem = document.createElement('div');
+
+    elem.style.cssText = `
+    position: fixed;
+    background-color: #6d6d6d;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 46px;
+    line-height: 40px;
+    text-align: center;
+    color: #FFF;
+    z-index: 9999999999;
+    `;
+
+    elem.id = "offline-banner";
+
+    elem.innerText = "Heads up  : You are offline";
+
+    document.body.appendChild(elem);
+
+}
+
+
+function removeOfflineBanner() {
+
+    const offlineBanner = document.querySelector("#offline-banner");
+
+    if (offlineBanner !== null) offlineBanner.parentNode.removeChild(offlineBanner);
+
+}
+
+
+
+if (!navigator.onLine) injectOfflineBanner();
+
+if (navigator.onLine) removeOfflineBanner();
+
+
+addEventListener("offline", injectOfflineBanner);
+
+
+addEventListener("online", removeOfflineBanner);
