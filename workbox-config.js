@@ -8,7 +8,7 @@ module.exports = {
         'img/*.{png,svg}' 
     ],
 
-    swDest: './sw.js', // the destination of my Service Worker ( in this case ./dist is the root folder )
+    swDest: 'build/workbox-sw.js', // the destination of my Service Worker ( in this case ./dist is the root folder )
 
     clientsClaim: true,
     skipWaiting: true

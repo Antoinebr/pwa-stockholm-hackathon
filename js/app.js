@@ -94,9 +94,24 @@ const displayPrices = async () => {
 };
 
 
-displayPrices();
+displayPrices().then(r => {
+
+        performance.mark('price-loaded');
+        console.log("price loaded", [...performance.getEntriesByName('price-loaded')][0].startTime);
+    })
+    .catch(e => console.log(e));
 
 
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelector('.sidenav');
+    var instance = M.Sidenav.init(elems);
+    
+    
+
+});
 
 /*
 | --------------------------------------------------------------------------

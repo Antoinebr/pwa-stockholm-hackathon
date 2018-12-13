@@ -4,7 +4,8 @@
   "description": "",
   "main": "workbox-config.js",
   "scripts": {
-    "start": "http-server -c-1 -p 4587"
+    "start": "http-server -c-1 -p 4587",
+    "generateSW" : "npx workbox generateSW && node ./build/build.js"
   },
   "keywords": [],
   "author": "",

@@ -8,6 +8,9 @@
 
 ```npm start```
 
+## Generate the service worker 
+
+```npm run generateSW```
 
 ## Demo : 
 
