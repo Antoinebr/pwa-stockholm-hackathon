@@ -1,3 +1,14 @@
+/*
+| --------------------------------------------------------------------------
+| My custom rules 
+| --------------------------------------------------------------------------
+|
+| Down there you can put all your specicic worbox rules 
+| The build process will append this file to the generated Service Worker from workbox ( precache )
+|
+*/
+
+
 // we add our offline page to the precache
 workbox.precaching.precacheAndRoute([{
     "url": "offline.html",
@@ -11,6 +22,8 @@ workbox.routing.registerRoute(/(https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/mate
 // we cache the fonts
 workbox.routing.registerRoute(/(https:\/\/fonts.googleapis.com\/icon)/, workbox.strategies.staleWhileRevalidate(), 'GET');
 workbox.routing.registerRoute(/(https:\/\/fonts.gstatic.com\/s\/materialicons)/, workbox.strategies.staleWhileRevalidate(), 'GET');
+
+
 
 // I'm caching all requests which match https://api.nomics.com/*
 workbox.routing.registerRoute(/(https:\/\/api.nomics.com\/)/, workbox.strategies.staleWhileRevalidate(), 'GET');

@@ -1,6 +1,6 @@
 module.exports = {
 
-    globDirectory : './', // where workbox should search
+    globDirectory : './public', // where workbox should search
     globPatterns : [ // what workbox should cache
         'index.html',
         'css/*.css',
