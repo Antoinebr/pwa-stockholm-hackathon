@@ -1,3 +1,5 @@
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
+
 /*
 | --------------------------------------------------------------------------
 | My custom rules 
@@ -8,6 +10,8 @@
 |
 */
 
+// 👇 DO NOT REMOVE THIS LINE ! Otherwise Workbox will not know where to inject the manifest
+workbox.precaching.precacheAndRoute([]);
 
 // we add our offline page to the precache
 workbox.precaching.precacheAndRoute([{

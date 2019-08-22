@@ -10,11 +10,10 @@
 
 ## Generate the service worker
 
-```npm run generateSW```
+```npm run build```
 
 ## Add custom rules / strategies to workbox
 
-You can add strategies in the ```sw-custom-rules.js``` file, they will be added at the end of the Workbox's generated Service Worker.
-
+You can add strategies in the ```serviceworker-dev.js``` file
 
 
