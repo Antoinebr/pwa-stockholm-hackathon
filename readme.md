@@ -15,5 +15,3 @@
 ## Add custom rules / strategies to workbox
 
 You can add strategies in the ```serviceworker-dev.js``` file
-
-

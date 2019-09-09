@@ -22,26 +22,26 @@
 
 
 const cardTemplate = (name, price, time) => `
-<div class="card">
-<div class="row">
+    <div class="card">
+    <div class="row">
 
-    <div class="col s4 img-container">
-        <img src="./img/${name}.svg" alt="" srcset="" width="80">
+        <div class="col s4 img-container">
+            <img src="./img/${name}.svg" alt="" srcset="" width="80">
+        </div>
+
+        <div class="col s8 card-content">
+            <h3>${name}</h3>
+            <p><span class="price">${price} €</span></p>
+            <p><span class="time">${time}</span></p>
+        </div>
+
     </div>
-
-    <div class="col s8 card-content">
-        <h3>${name}</h3>
-        <p><span class="price">${price} €</span></p>
-        <p><span class="time">${time}</span></p>
     </div>
-
-</div>
-</div>
 `;
 
 const getPrices = async (crypto) => {
 
-    const data = await fetch(`https://api.nomics.com/v1/markets/interval?key=03a9cb810b88f55192cf39318b63d95c&currency=${crypto}`);
+    const data = await fetch(`https://crypto-api.glitch.me/`);
 
     if (!data.ok) {
         const errorText = await data.text();
@@ -49,44 +49,21 @@ const getPrices = async (crypto) => {
     }
     const json = await data.json();
 
-    return {
-        price: Math.round(json[0]['open']),
-        time: json[0]['close_timestamp']
-    }
+    return json;
 
-};
-
-
-const cryptos = {
-    "BTC": {
-        title: "Bitcoin",
-        name: "BTC"
-    },
-    "DASH": {
-        title: "Dash",
-        name: "DASH"
-    },
-    "ETH": {
-        title: "Ethereum",
-        name: "ETH"
-    }
 };
 
 
 
 const displayPrices = async () => {
 
-    for (let key of Object.keys(cryptos)) {
+    const prices = await getPrices();
 
-        const {
-            price,
-            time
-            // await is slower but will keep the order 
-        } = await getPrices(cryptos[key].name)
+    for (const price of prices) {
 
         let element = document.createElement('div')
         element.classList.add('card');
-        element.innerHTML = cardTemplate(cryptos[key].title, price, time)
+        element.innerHTML = cardTemplate(price.name, price.price, price.time)
         document.querySelector('#cryptos-container').appendChild(element);
 
     }
@@ -94,31 +71,13 @@ const displayPrices = async () => {
 };
 
 
-displayPrices().then(r => {
 
-        performance.mark('price-loaded');
-        console.log("price loaded", [...performance.getEntriesByName('price-loaded')][0].startTime);
-    })
-    .catch(e => console.log(e));
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    var elems = document.querySelector('.sidenav');
-    var instance = M.Sidenav.init(elems);
-    
-    
-
+document.addEventListener('DOMContentLoaded', async function () {
+    const elems = document.querySelector('.sidenav');
+    const instance = M.Sidenav.init(elems);
+    await displayPrices().catch(e => console.log(e));
 });
 
-/*
-| --------------------------------------------------------------------------
-| Title
-| --------------------------------------------------------------------------
-|
-*/
 
 function injectOfflineBanner() {
 

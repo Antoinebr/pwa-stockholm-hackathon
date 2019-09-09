@@ -10,6 +10,7 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox
 |
 */
 
+// 👇 DO NOT REMOVE THIS LINE ! Otherwise Workbox will not know where to inject the manifest
 workbox.precaching.precacheAndRoute([
   {
     "url": "index.html",
@@ -21,7 +22,7 @@ workbox.precaching.precacheAndRoute([
   },
   {
     "url": "js/app.js",
-    "revision": "ce25692c1014fc1fbe07f6f715425797"
+    "revision": "437949ae0f236ec63f71e047da13e13a"
   },
   {
     "url": "img/Bitcoin.svg",
@@ -36,6 +37,11 @@ workbox.precaching.precacheAndRoute([
     "revision": "dadbeae8504595321d65842442d2f5d1"
   }
 ]);
+
+// force the installation and activation of the latest Service Worker 
+workbox.core.skipWaiting();
+workbox.core.clientsClaim();
+
 
 // we add our offline page to the precache
 workbox.precaching.precacheAndRoute([{
@@ -53,8 +59,8 @@ workbox.routing.registerRoute(/(https:\/\/fonts.gstatic.com\/s\/materialicons)/,
 
 
 
-// I'm caching all requests which match https://api.nomics.com/*
-workbox.routing.registerRoute(/(https:\/\/api.nomics.com\/)/, workbox.strategies.staleWhileRevalidate(), 'GET');
+// I'm caching all requests which match https://crypto-api.glitch.me/*
+workbox.routing.registerRoute(/(https:\/\/crypto-api.glitch.me\/)/, workbox.strategies.staleWhileRevalidate(), 'GET');
 
 /*
 | --------------------------------------------------------------------------

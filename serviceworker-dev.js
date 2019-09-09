@@ -13,6 +13,11 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox
 // 👇 DO NOT REMOVE THIS LINE ! Otherwise Workbox will not know where to inject the manifest
 workbox.precaching.precacheAndRoute([]);
 
+// force the installation and activation of the latest Service Worker 
+workbox.core.skipWaiting();
+workbox.core.clientsClaim();
+
+
 // we add our offline page to the precache
 workbox.precaching.precacheAndRoute([{
     "url": "offline.html",
@@ -29,8 +34,8 @@ workbox.routing.registerRoute(/(https:\/\/fonts.gstatic.com\/s\/materialicons)/,
 
 
 
-// I'm caching all requests which match https://api.nomics.com/*
-workbox.routing.registerRoute(/(https:\/\/api.nomics.com\/)/, workbox.strategies.staleWhileRevalidate(), 'GET');
+// I'm caching all requests which match https://crypto-api.glitch.me/*
+workbox.routing.registerRoute(/(https:\/\/crypto-api.glitch.me\/)/, workbox.strategies.staleWhileRevalidate(), 'GET');
 
 /*
 | --------------------------------------------------------------------------
