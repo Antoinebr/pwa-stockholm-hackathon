@@ -60,8 +60,19 @@ workbox.routing.registerRoute(/(https:\/\/fonts.gstatic.com\/s\/materialicons)/,
 
 
 // I'm caching all requests which match https://crypto-api.glitch.me/*
-//workbox.routing.registerRoute(/(https:\/\/crypto-api.glitch.me\/)/, workbox.strategies.networkFirst(), 'GET');
-workbox.routing.registerRoute(/(https:\/\/crypto-api.glitch.me\/)/, workbox.strategies.staleWhileRevalidate(), 'GET');
+
+workbox.routing.registerRoute(
+  /(https:\/\/crypto-api.glitch.me\/)/,
+  new workbox.strategies.StaleWhileRevalidate({
+    plugins: [
+      new workbox.broadcastUpdate.Plugin({
+        channelName: 'api-updates',
+      }),
+    ],
+  })
+);
+
+
 
 /*
 | --------------------------------------------------------------------------

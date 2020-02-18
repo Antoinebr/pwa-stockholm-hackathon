@@ -13,3 +13,16 @@
     font-size: 13px;
     color: gray;
 }
+
+.notification{
+    display:block;
+    margin: auto;
+    width: auto;
+    padding: 30px;
+    background-color: #eaeaea;
+    border: solid 1px black;
+    position: fixed;
+    bottom:0;
+    right: 0;
+  }
+  

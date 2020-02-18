@@ -124,3 +124,31 @@ addEventListener("offline", injectOfflineBanner);
 
 
 addEventListener("online", removeOfflineBanner);
+
+
+
+
+
+
+
+const $body = document.querySelector('body');
+
+const notifyUser = message => {
+  $body.insertAdjacentHTML('afterbegin', `
+
+      <p class="notification">${message}</p>
+  
+  `);
+};
+
+
+const updatesChannel = new BroadcastChannel('api-updates');
+
+updatesChannel.addEventListener('message', async (event) => {
+
+  const {cacheName,updatedURL} = event.data.payload;
+  
+  console.log(cacheName,updatedURL, event.data);
+
+  notifyUser(`There's new data available, <a href='/'>refresh the page to display it </a> `);
+});
